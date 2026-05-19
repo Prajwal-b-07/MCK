@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manjula's Cloud Kitchen</title>
+
+<!-- WEBSITE TAB LOGO -->
+<link rel="icon" type="image/png" href="logo.png">
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Montserrat',sans-serif;
+    background:#f8f4f1;
+    color:#2b2b2b;
+    overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f3e8ef;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#7b1e5d;
+    border-radius:10px;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 8%;
+
+    background:rgba(75,13,58,0.9);
+    backdrop-filter:blur(12px);
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+
+    animation:slideDown 1s ease;
+}
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo img{
+    width:75px;
+    height:75px;
+    object-fit:cover;
+    border-radius:50%;
+    background:white;
+    padding:5px;
+
+    box-shadow:0 5px 20px rgba(255,255,255,0.2);
+
+    transition:0.4s ease;
+}
+
+.logo img:hover{
+    transform:rotate(8deg) scale(1.08);
+}
+
+.logo h1{
+    font-family:'Great Vibes',cursive;
+    font-size:44px;
+    color:white;
+    font-weight:400;
+    letter-spacing:1px;
+}
+
+/* NAVBAR */
+
+nav{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+
+    font-family:'Cinzel', serif;
+
+    font-size:20px;
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    position:relative;
+
+    transition:0.4s ease;
+
+    padding:8px 0;
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-6px;
+
+    width:0%;
+    height:2px;
+
+    background:#ffd1ea;
+
+    transition:0.4s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+nav a:hover{
+    color:#ffd1ea;
+
+    transform:translateY(-2px);
+
+    text-shadow:0 0 12px rgba(255,209,234,0.7);
+}
+
+/* HERO SECTION */
+
+.hero{
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=1600')
+    center/cover no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    padding:120px 20px;
+}
+
+/* HERO CONTENT */
+
+.hero-content{
+    animation:fadeUp 1.5s ease;
+}
+
+.hero-logo{
+    width:210px;
+    margin-bottom:25px;
+
+    filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+
+    animation:float 4s ease-in-out infinite;
+}
+
+.hero-content h1{
+    font-family:'Cinzel',serif;
+    font-size:72px;
+    color:white;
+
+    margin-bottom:20px;
+
+    letter-spacing:2px;
+}
+
+.hero-content p{
+    font-size:24px;
+    color:#f3d9e7;
+
+    margin-bottom:40px;
+}
+
+/* BUTTON */
+
+.btn{
+    display:inline-block;
+
+    padding:16px 40px;
+
+    background:linear-gradient(135deg,#7b1e5d,#a42d79);
+
+    color:white;
+    text-decoration:none;
+
+    border-radius:50px;
+
+    font-size:18px;
+    font-weight:600;
+
+    box-shadow:0 10px 30px rgba(123,30,93,0.4);
+
+    transition:0.4s;
+}
+
+.btn:hover{
+    transform:translateY(-5px) scale(1.03);
+
+    box-shadow:0 15px 35px rgba(123,30,93,0.5);
+}
+
+/* SECTION */
+
+section{
+    padding:100px 8%;
+}
+
+/* TITLES */
+
+.section-title{
+    text-align:center;
+
+    font-size:50px;
+
+    color:#7b1e5d;
+
+    margin-bottom:60px;
+
+    font-family:'Cinzel',serif;
+
+    position:relative;
+}
+
+.section-title::after{
+    content:'';
+
+    width:120px;
+    height:4px;
+
+    background:#7b1e5d;
+
+    position:absolute;
+
+    left:50%;
+    transform:translateX(-50%);
+
+    bottom:-15px;
+
+    border-radius:20px;
+}
+
+/* MENU */
+
+.menu-container{
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:35px;
+}
+
+.menu-card{
+    background:white;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    transition:0.5s;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.menu-card:hover{
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.menu-card img{
+    width:100%;
+    height:240px;
+
+    object-fit:cover;
+
+    transition:0.5s;
+}
+
+.menu-card:hover img{
+    transform:scale(1.08);
+}
+
+.menu-content{
+    padding:25px;
+}
+
+.menu-content h3{
+    color:#7b1e5d;
+
+    font-size:28px;
+
+    margin-bottom:10px;
+
+    font-family:'Cinzel',serif;
+}
+
+.menu-content p{
+    color:#666;
+
+    line-height:1.6;
+}
+
+.price{
+    margin-top:18px;
+
+    font-size:24px;
+    font-weight:700;
+
+    color:#4b0d3a;
+}
+
+/* DELIVERY */
+
+.delivery{
+    background:linear-gradient(135deg,#4b0d3a,#7b1e5d);
+
+    border-radius:40px;
+
+    color:white;
+
+    text-align:center;
+}
+
+.delivery p{
+    font-size:22px;
+}
+
+.delivery-links{
+    margin-top:40px;
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+
+    gap:25px;
+}
+
+.delivery-links a{
+    text-decoration:none;
+
+    background:white;
+
+    color:#7b1e5d;
+
+    padding:18px 40px;
+
+    border-radius:50px;
+
+    font-size:20px;
+    font-weight:700;
+
+    transition:0.4s;
+}
+
+.delivery-links a:hover{
+    transform:translateY(-6px);
+
+    background:#ffd1ea;
+}
+
+/* CONTACT */
+
+.contact-container{
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+}
+
+.contact-box{
+    background:white;
+
+    padding:40px;
+
+    border-radius:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+    transition:0.4s;
+}
+
+.contact-box:hover{
+    transform:translateY(-8px);
+}
+
+.contact-box h3{
+    font-family:'Cinzel',serif;
+
+    color:#7b1e5d;
+
+    margin-bottom:20px;
+
+    font-size:32px;
+}
+
+.contact-box p{
+    margin-bottom:18px;
+
+    font-size:18px;
+
+    color:#555;
+}
+
+/* FOOTER */
+
+footer{
+    background:#4b0d3a;
+
+    color:white;
+
+    text-align:center;
+
+    padding:30px;
+
+    font-size:17px;
+
+    margin-top:50px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes slideDown{
+
+    from{
+        opacity:0;
+        transform:translateY(-50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .logo h1{
+        font-size:28px;
+    }
+
+    .logo img{
+        width:55px;
+        height:55px;
+    }
+
+    nav{
+        display:none;
+    }
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
+
+    .hero-logo{
+        width:140px;
+    }
+
+    .section-title{
+        font-size:38px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+
+        <img src="logo.png" alt="Logo">
+
+        <h1>Manjula's Cloud Kitchen</h1>
+
+    </div>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#menu">Menu</a>
+
+        <a href="#delivery">Order</a>
+
+        <a href="#contact">Contact</a>
+
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <img src="logo.png" class="hero-logo" alt="Logo">
+
+        <h1>Homemade Taste Delivered</h1>
+
+        <p>Fresh • Hygienic • Delicious</p>
+
+        <a href="#menu" class="btn">Explore Menu</a>
+
+    </div>
+
+</section>
+
+<!-- MENU -->
+
+<section id="menu">
+
+    <h2 class="section-title">Our Menu</h2>
+
+    <div class="menu-container">
+
+        <div class="menu-card">
+
+            <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?q=80&w=1200" alt="">
+
+            <div class="menu-content">
+
+                <h3>Chicken Biryani</h3>
+
+                <p>Authentic spicy dum biryani.</p>
+
+                <div class="price">₹170</div>
+
+            </div>
+
+        </div>
+
+        <div class="menu-card">
+
+            <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=1200" alt="">
+
+            <div class="menu-content">
+
+                <h3>Chicken Kebab (Half)</h3>
+
+                <p>Juicy grilled kebab.</p>
+
+                <div class="price">₹80</div>
+
+            </div>
+
+        </div>
+
+        <div class="menu-card">
+
+            <img src="https://images.unsplash.com/photo-1603893662172-99ed0cea2a08?q=80&w=1200" alt="">
+
+            <div class="menu-content">
+
+                <h3>Chicken Kebab (Full)</h3>
+
+                <p>Full plate spicy kebab.</p>
+
+                <div class="price">₹150</div>
+
+            </div>
+
+        </div>
+
+        <div class="menu-card">
+
+            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=1200" alt="">
+
+            <div class="menu-content">
+
+                <h3>Chicken Gravy</h3>
+
+                <p>Rich homemade chicken curry.</p>
+
+                <div class="price">₹140</div>
+
+            </div>
+
+        </div>
+
+        <div class="menu-card">
+
+            <img src="https://images.unsplash.com/photo-1516684732162-798a0062be99?q=80&w=1200" alt="">
+
+            <div class="menu-content">
+
+                <h3>White Rice</h3>
+
+                <p>Served with Rasam / Sambar.</p>
+
+                <div class="price">₹50</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DELIVERY -->
+
+<section class="delivery" id="delivery">
+
+    <h2 class="section-title" style="color:white;">Order Online</h2>
+
+    <p>Available on your favorite delivery apps</p>
+
+    <div class="delivery-links">
+
+        <a href="https://www.swiggy.com/" target="_blank">Swiggy</a>
+
+        <a href="https://www.zomato.com/" target="_blank">Zomato</a>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <h2 class="section-title">Contact Us</h2>
+
+    <div class="contact-container">
+
+        <div class="contact-box">
+
+            <h3>Get in Touch</h3>
+
+            <p>📍 Bangalore, Karnataka</p>
+
+            <p>📞 +91 98765 43210</p>
+
+            <p>📧 manjulascloudkitchen@gmail.com</p>
+
+            <p>📷 @manjulascloudkitchen</p>
+
+        </div>
+
+        <div class="contact-box">
+
+            <h3>Opening Hours</h3>
+
+            <p>Monday - Friday : 11 AM - 11 PM</p>
+
+            <p>Saturday : 10 AM - 12 AM</p>
+
+            <p>Sunday : 10 AM - 11 PM</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>© 2026 Manjula's Cloud Kitchen | Made with Love ❤️</p>
+
+</footer>
+
+</body>
+</html>
